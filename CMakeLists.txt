@@ -10,7 +10,7 @@ FETCHCONTENT_MAKEAVAILABLE(SFML)
 
 
 # Define the executable target
-add_executable(fuild_simulation main.cu)
+add_executable(fuild_simulation GPU.cu)
 
 target_link_libraries(fuild_simulation sfml-graphics)
 

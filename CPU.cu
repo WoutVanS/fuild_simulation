@@ -9,7 +9,7 @@
 #define IX(i, j) ((i) + (N+2) * (j))
 #define SWAP(x0,x) {float *tmp=x0;x0=x;x=tmp;}
 
-#define threads 1024
+#define threads 512
 #define blocks (size / threads)
 
 #define SOURCE_SIZE 16
@@ -297,11 +297,13 @@ void initQuads(sf::VertexArray& quads){
 //////////////////////////////////////////////////// main //////////////////////////////////////////////////////////////
 int main() {
 
-    std::ofstream myFile("fluid_simulation_CPU.csv");
+    std::ofstream myFile("fluid_simulation_CPU_stats_512.csv");
     if(!myFile.is_open()){
         std::cout<< "failed to open the file." << std::endl;
         return 1;
     }
+
+    myFile << "calculation time" << ";" << "drawing time" <<"\n";
 
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Fluid Simulation");
     sf::VertexArray quads(sf::Quads, 4 * N * N);
@@ -352,24 +354,31 @@ int main() {
 
             get_from_UI(window, dens_prev, u_prev, v_prev, diff,visc,force, source, simulating, clearData);
 
+            auto stopCPU = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<float, std::milli> timeUI = stopCPU - startCPU;
+
             //cudaMemcpy(u_prev_d, u_prev, size * sizeof(float), cudaMemcpyHostToDevice);
             //cudaMemcpy(v_prev_d, v_prev, size * sizeof(float), cudaMemcpyHostToDevice);
             //cudaMemcpy(dens_prev_d, dens_prev, size * sizeof(float), cudaMemcpyHostToDevice);
 
+            startCPU = std::chrono::high_resolution_clock::now();
             vel_step(u, v, u_prev, v_prev, visc, dt);
             dens_step(dens, dens_prev, u, v, diff, dt);
+            stopCPU = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<float, std::milli> timeCal = stopCPU - startCPU;
 
             //cudaMemcpy(u_prev, u_prev_d, size * sizeof(float), cudaMemcpyDeviceToHost);
             //cudaMemcpy(v_prev, v_prev_d, size * sizeof(float), cudaMemcpyDeviceToHost);
             //cudaMemcpy(dens_prev, dens_prev_d, size * sizeof(float), cudaMemcpyDeviceToHost);
 
+            startCPU = std::chrono::high_resolution_clock::now();
             draw_density(window,quads, color,dens, colors, colors_d);
+            stopCPU = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<float, std::milli> timeDraw = stopCPU - startCPU;
 
-            auto stopCPU = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<float, std::milli> time = stopCPU - startCPU;
-            //std::cout<<" fps " << 1000/time.count() << std::endl;
+
             if(teller < 1000){
-                myFile << time.count() << "\n";
+                myFile <<  timeCal.count()<< ";" << timeDraw.count()  << "\n";
                 teller++;
             }
             if(teller == 1000) std::cout<< "file is complete";

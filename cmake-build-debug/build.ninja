@@ -49,9 +49,9 @@ cmake_ninja_workdir = C$:\Users\woutv_2f9p4w7\CLionProjects\fuild_simulation\cma
 
 build cmake_object_order_depends_target_fuild_simulation: phony || cmake_object_order_depends_target_sfml-graphics cmake_object_order_depends_target_sfml-system cmake_object_order_depends_target_sfml-window
 
-build CMakeFiles\fuild_simulation.dir\main.cu.obj: CUDA_COMPILER__fuild_simulation_unscanned_Debug C$:\Users\woutv_2f9p4w7\CLionProjects\fuild_simulation\main.cu || cmake_object_order_depends_target_fuild_simulation
+build CMakeFiles\fuild_simulation.dir\GPU.cu.obj: CUDA_COMPILER__fuild_simulation_unscanned_Debug C$:\Users\woutv_2f9p4w7\CLionProjects\fuild_simulation\GPU.cu || cmake_object_order_depends_target_fuild_simulation
   DEFINES = -DSFML_STATIC
-  DEP_FILE = CMakeFiles\fuild_simulation.dir\main.cu.obj.d
+  DEP_FILE = CMakeFiles\fuild_simulation.dir\GPU.cu.obj.d
   FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" -std=c++14 "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
   INCLUDES = -IC:\Users\woutv_2f9p4w7\CLionProjects\fuild_simulation\cmake-build-debug\_deps\sfml-src\include
   OBJECT_DIR = CMakeFiles\fuild_simulation.dir
@@ -67,7 +67,7 @@ build CMakeFiles\fuild_simulation.dir\main.cu.obj: CUDA_COMPILER__fuild_simulati
 #############################################
 # Link the executable CMakeFiles\fuild_simulation.dir\cmake_device_link.obj
 
-build CMakeFiles\fuild_simulation.dir\cmake_device_link.obj: CUDA_EXECUTABLE_DEVICE_LINKER__fuild_simulation_Debug CMakeFiles\fuild_simulation.dir\main.cu.obj | _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-src\extlibs\libs-msvc-universal\x64\freetype.lib || _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib
+build CMakeFiles\fuild_simulation.dir\cmake_device_link.obj: CUDA_EXECUTABLE_DEVICE_LINKER__fuild_simulation_Debug CMakeFiles\fuild_simulation.dir\GPU.cu.obj | _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-src\extlibs\libs-msvc-universal\x64\freetype.lib || _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib
   LANGUAGE_COMPILE_FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
   LINK_LIBRARIES = _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib winmm.lib gdi32.lib opengl32.lib glu32.lib _deps\sfml-src\extlibs\libs-msvc-universal\x64\freetype.lib cudadevrt.lib cudart_static.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\fuild_simulation.dir
@@ -83,7 +83,7 @@ build CMakeFiles\fuild_simulation.dir\cmake_device_link.obj: CUDA_EXECUTABLE_DEV
 #############################################
 # Link the executable fuild_simulation.exe
 
-build fuild_simulation.exe: CUDA_EXECUTABLE_LINKER__fuild_simulation_Debug CMakeFiles\fuild_simulation.dir\main.cu.obj CMakeFiles\fuild_simulation.dir\cmake_device_link.obj | _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-src\extlibs\libs-msvc-universal\x64\freetype.lib || _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib
+build fuild_simulation.exe: CUDA_EXECUTABLE_LINKER__fuild_simulation_Debug CMakeFiles\fuild_simulation.dir\GPU.cu.obj CMakeFiles\fuild_simulation.dir\cmake_device_link.obj | _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-src\extlibs\libs-msvc-universal\x64\freetype.lib || _deps\sfml-build\lib\sfml-graphics-s-d.lib _deps\sfml-build\lib\sfml-system-s-d.lib _deps\sfml-build\lib\sfml-window-s-d.lib
   FLAGS = -D_WINDOWS -Xcompiler=" /EHsc" -Xcompiler=" -Ob0 -Od /RTC1" "--generate-code=arch=compute_52,code=[compute_52,sm_52]" -Xcompiler=-MDd -Xcompiler=-Zi
   LINK_FLAGS = /debug /INCREMENTAL
   LINK_LIBRARIES = _deps\sfml-build\lib\sfml-graphics-s-d.lib  _deps\sfml-build\lib\sfml-window-s-d.lib  _deps\sfml-build\lib\sfml-system-s-d.lib  winmm.lib  gdi32.lib  opengl32.lib  glu32.lib  _deps\sfml-src\extlibs\libs-msvc-universal\x64\freetype.lib  cudadevrt.lib  cudart_static.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
